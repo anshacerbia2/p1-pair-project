@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+</head>
+<body>
+    <h3>Product Page</h3>
+    <button><a href="/product/add">Add product</a></button>
+    <br>
+
+
+    <label>Sort</label>
+    <button><a href="/product/?sort=name">Nama</a></button>
+    <button><a href="/product/?sort=stock">stock</a></button>
+    <button><a href="/product/?sort=price">price</a></button>
+    <br>
+
+
+    <form action="/product" method="get">
+    <label>Filter by</label>
+    <select name="CategoryId">
+        <% result2.forEach((el) =>{ %>
+            <option value="<%= el.id %>"><%= el.name %></option>
+        <% }) %> 
+    </select>
+    <button type="submit">Filter</button>
+    </form>
+
+
+    <form action="/product" method="get">
+        <label>Search</label>
+        <input type="text" name="search" placeholder="Beradasarkan Nama">
+        <button type="submit">Search</button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        <% result.forEach((el) =>{ %>
+        <tr>
+            <td><%= el.name %> </td>
+            <td><%= el.brand %> </td>
+            <td><%= el.stock %> </td>
+            <td><%= el.price %> </td>
+            <td><%= el.description %> </td>
+            <td><a href="/product/edit/<%= el.id %>">Edit</a> | <a href="/product/delete/<%= el.id %>">Delete</a></td>
+        </tr>
+        <% }) %> 
+    </table>
+</body>
+</html>
