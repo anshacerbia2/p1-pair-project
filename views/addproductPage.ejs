@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Page</title>
+</head>
+<body>
+    <h1>Add Product Page</h1>
+
+    <form action="/product/add" method="post">
+        <label for="1">Nama</label>
+        <input type="text" name="name" id="1" autocomplete="off">
+        <br>
+        <label for="2">Brand Product</label>
+        <input type="text" name="brand" id="2" autocomplete="off">
+        <br>
+        <label for="3">Stock</label>
+        <input type="number" name="stock" id="3">
+        <br>
+        <label for="7">Price</label>
+        <input type="number" name="price" id="7">
+        <br>
+        <label for="4">Deskripsi</label>
+        <input type="text" name="description" id="4" autocomplete="off">
+        <br>
+        <label for="5">Categori</label>
+        <select name="CategoryId" id="5">
+            <% result.forEach((el) =>{ %>
+                <option value="<%= el.id %>"><%= el.name %></option>
+            <% }) %> 
+        </select>
+        <br>
+        <label for="6">User Id</label>
+        <input type="number" name="UserId" id="6">
+        <br>
+        <input type="submit" value="Add">
+
+    </form>
+
+    <br><br>
+    <button><a href="/product">Back</a></button>
+    
+</body>
+</html>
