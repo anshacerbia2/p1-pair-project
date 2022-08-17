@@ -1,0 +1,51 @@
+[
+  {
+    "brand": "Hp",
+    "stock": 100,
+    "price": 8000000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "ProductId": 1
+  },
+  {
+    "brand": "Sony",
+    "stock": 200,
+    "price": 7200000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "ProductId": 2
+  },
+  {
+    "brand": "Samsung",
+    "stock": 70,
+    "price": 8500000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "ProductId": 3
+  },
+  {
+    "brand": "Lee",
+    "stock": 300,
+    "price": 700000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "ProductId": 4
+  },
+  {
+    "brand": "Champion",
+    "stock": 10,
+    "price": 2500000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "ProductId": 5
+  },
+  {
+    "brand": "Rolex",
+    "stock": 5,
+    "price": 500000000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "ProductId": 6
+  },
+  {
+    "brand": "Roxy",
+    "stock": 200,
+    "price": 400000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "ProductId": 7
+  }
+]

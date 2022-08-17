@@ -1,0 +1,10 @@
+const { request } = require('express');
+const express = require('express');
+const app = express();
+const port = 3000;
+const UserController = require('./controllers/UserController');
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
+app.get('/', (request, response) => response.render('home'));
+app.get('/login', (request, response) => response.render('login'));
+app.listen(port, () => console.log(`Server listening on port ${port}`));

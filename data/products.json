@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop",
+    "brand": "Hp",
+    "stock": 100,
+    "price": 8000000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "UserId": 2,
+    "CategoryId": 1
+  },
+  {
+    "id": 2,
+    "name": "TV",
+    "brand": "Sony",
+    "stock": 200,
+    "price": 7200000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "UserId": 1,
+    "CategoryId": 1
+  },
+  {
+    "id": 3,
+    "name": "Handphone",
+    "brand": "Samsung",
+    "stock": 70,
+    "price": 8500000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "UserId": 1,
+    "CategoryId": 1
+  },
+  {
+    "id": 4,
+    "name": "Jeans",
+    "brand": "Lee",
+    "stock": 300,
+    "price": 700000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "UserId": 2,
+    "CategoryId": 2
+  },
+  {
+    "id": 5,
+    "name": "Sweater",
+    "brand": "Champion",
+    "stock": 10,
+    "price": 2500000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "UserId": 2,
+    "CategoryId": 2
+  },
+  {
+    "id": 6,
+    "name": "Watch",
+    "brand": "Rolex",
+    "stock": 5,
+    "price": 500000000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "UserId": 2,
+    "CategoryId": 3
+  },
+  {
+    "id": 7,
+    "name": "hat",
+    "brand": "Roxy",
+    "stock": 200,
+    "price": 400000,
+    "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
+    "UserId": 1,
+    "CategoryId": 3
+  }
+]
