@@ -16,6 +16,7 @@ router.post('/dashboard/admin/product/edit/:id',isAuthAdmin, AdminDashboardContr
 router.get('/dashboard/admin/product/delete/:id', isAuthAdmin, AdminDashboardController.deleteProduct)
 
 router.get('/dashboard/admin/listUser',isAuthAdmin, AdminDashboardController.showUser)
+router.get('/dashboard/admin/listUser/delete/:id', isAuthAdmin, AdminDashboardController.deleteUser)
 
 module.exports = router;
 

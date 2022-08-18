@@ -136,6 +136,22 @@ class Controller {
     })
   }
 
+  static deleteUser(req,res) {
+  let id = req.params.id
+  User.destroy({
+    where : {
+      id : id
+    }
+  })
+  .then(() =>{
+    res.redirect('/dashboard/admin/listUser')
+  })
+  
+  .catch((err) =>{
+    res.send(err)
+  })
+  }
+
 }
 
 module.exports = Controller
