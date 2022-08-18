@@ -39,13 +39,16 @@ class AuthController {
           response.render('login', { input, invalid });
         }
         if (compareHashedPassword(password, user.password)) {
-          request.session.isAuth = true;
-          request.session.save();
-          console.log(request.session);
-          response.redirect('/');
+          request.session.user = {
+            id: user.id,
+            role: user.role
+          }
+          console.log(request.session)
+          response.redirect(`/dashboard/${user.role}`)
+
         }
       })
-      .catch(err => response.send(err));
+        .catch(err => response.send(err));
   }
 }
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Product Page</title>
+</head>
+<body>
+    <a href="/login" class="btn btn-primary mx-2">Login</a>
+    <a href="/register" class="btn btn-primary mx-2">Register</a>
+    <h3>Product Page</h3>
+    <br>
+
+
+    <label>Sort</label>
+    <button><a href="/product/?sort=name">Nama</a></button>
+    <button><a href="/product/?sort=stock">stock</a></button>
+    <button><a href="/product/?sort=price">price</a></button>
+    <br>
+
+
+    <form action="/product" method="get">
+    <label>Filter by</label>
+    <select name="CategoryId">
+        <% result2.forEach((el) =>{ %>
+            <option value="<%= el.id %>"><%= el.name %></option>
+        <% }) %> 
+    </select>
+    <button type="submit">Filter</button>
+    </form>
+
+
+    <form action="/product" method="get">
+        <label>Search</label>
+        <input type="text" name="search" placeholder="Beradasarkan Nama">
+        <button type="submit">Search</button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        <% result.forEach((el) =>{ %>
+        <tr>
+            <td><%= el.name %> </td>
+            <td><%= el.brand %> </td>
+            <td><%= el.price %> </td>
+            <td><a href="/product/detail/<%= el.id %>">Detail</a></td>
+        </tr>
+        <% }) %> 
+    </table>
+</body>
+</html>
