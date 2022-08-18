@@ -8,38 +8,37 @@
 </head>
 <body>
     <h1>Edit Product Page</h1>
-    <form action="/product/edit/<%= result.id %>" method="post">
+    <form action="/dashboard/admin/product/edit/<%= product.id %>" method="post">
         <label for="1">Nama</label>
-        <input type="text" name="name" id="1" autocomplete="off" value="<%= result.name %>">
+        <input type="text" name="name" id="1" autocomplete="off" value="<%= product.name %>">
         <br>
         <label for="2">Brand Product</label>
-        <input type="text" name="brand" id="2" autocomplete="off" value="<%= result.brand %>">
+        <input type="text" name="brand" id="2" autocomplete="off" value="<%= product.brand %>">
         <br>
         <label for="3">Stock</label>
-        <input type="number" name="stock" id="3" value="<%= result.stock %>">
+        <input type="number" name="stock" id="3" value="<%= product.stock %>">
         <br>
         <label for="7">Price</label>
-        <input type="number" name="price" id="7" value="<%= result.price %>">
+        <input type="number" name="price" id="7" value="<%= product.price %>">
         <br>
         <label for="4">Deskripsi</label>
-        <input type="text" name="description" id="4" autocomplete="off" value="<%=result.description %>" >
+        <input type="text" name="description" id="4" autocomplete="off" value="<%=product.description %>" >
         <br>
         <label for="5">Categori</label>
         <select name="CategoryId" id="5">
-            <% result2.forEach((el) =>{ %>
-                <option value="<%= el.id %>"<%= +result.CategoryId === +el.id ? "selected" : "" %> ><%= el.name %></option>
+            <% categories.forEach((el) =>{ %>
+                <option value="<%= el.id %>"<%= +product.CategoryId === +el.id ? "selected" : "" %> ><%= el.name %></option>
             <% }) %> 
             
         </select>
         <br>
-        <label for="6">User Id</label>
-        <input type="number" name="UserId" id="6" value="<%= result.UserId %>">
+        <input type="hidden" name="UserId" id="6" value="2">
         <br>
         <input type="submit" value="Add">
     </form>
 
     <br><br>
-    <button><a href="/product">Back</a></button>
+    <button><a href="/dashboard/admin">Back</a></button>
     
 </body>
 </html>

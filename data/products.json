@@ -16,7 +16,7 @@
     "stock": 200,
     "price": 7200000,
     "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
-    "UserId": 1,
+    "UserId": 2,
     "CategoryId": 1
   },
   {
@@ -26,7 +26,7 @@
     "stock": 70,
     "price": 8500000,
     "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
-    "UserId": 1,
+    "UserId": 2,
     "CategoryId": 1
   },
   {
@@ -66,7 +66,7 @@
     "stock": 200,
     "price": 400000,
     "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum",
-    "UserId": 1,
+    "UserId": 2,
     "CategoryId": 3
   }
 ]

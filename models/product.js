@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.User);
       Product.belongsTo(models.Category);
     }
+    get formatRupiah () {
+      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR'}).format(this.price);
+    }
   }
   Product.init({
     name: {
