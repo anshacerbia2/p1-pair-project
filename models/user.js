@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+const hashPassword = require('../helpers/hashPassword');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -16,7 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required username field.' },
+        notNull: { msg: 'Required username field.' }
+      },
+      unique: true
     },
     email: {
       type: DataTypes.STRING,
@@ -24,15 +28,26 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'Required email field.' },
         notNull: { msg: 'Required email field.' },
-        unique: { msg: 'Email has been used.' },
-        isEmail: { msg: 'Please input valid email.' }
       }
     },
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required password field.' },
+        notNull: { msg: 'Required password field.' }
+      }
+    },
     role: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
+    hooks: {
+      beforeCreate: (val) => {
+        val.password = hashPassword(val.password);
+        val.role = 'user';
+      }
+    }
   });
   return User;
 };

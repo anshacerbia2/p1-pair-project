@@ -13,27 +13,36 @@
       width: 300px;
     }
     .invalid {
-      padding: 10px 0;
       color: red;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
-      text-align: center;
     }
   </style>
 </head>
 <body>
+  <h3>Register</h3>
   <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-    <form action="/login" method="post" class="form-floating" style="width: 300;">
-      <div class="invalid"><%= invalid.credential ? invalid.credential : '' %></div>
+    <form action="/register" method="post" class="form-floating">
       <div class="form-floating mb-2">
         <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<%= input.username ? input.username : '' %>">
         <label for="username">Username</label>
+        <div class="invalid"><%= invalid.username ? invalid.username : '' %></div>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="email" class="form-control" id="email" name="email" placeholder="email@exmaple.com" <%= input.email ? input.email : '' %>>
+        <label for="email">Email address</label>
+        <div class="invalid"><%= invalid.email ? invalid.email : '' %></div>
       </div>
       <div class="form-floating mb-2">
         <input type="password" class="form-control" name="password" id="password" placeholder="Password" <%= input.password ? input.password : '' %>>
         <label for="password">Password</label>
+        <div class="invalid"><%= invalid.password ? invalid.password : '' %></div>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <div class="form-floating mb-2">
+        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm" <%= input.confirm ? input.confirm : '' %>>
+        <label for="confirm">Confirm</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
     </form>
   </div>
 </body>

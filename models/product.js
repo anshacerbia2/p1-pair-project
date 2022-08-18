@@ -15,13 +15,70 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Product.init({
-    name: DataTypes.STRING,
-    brand: DataTypes.STRING,
-    stock: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
-    description: DataTypes.STRING,
-    CategoryId: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required name field' },
+        notNull: { msg: 'Required name field.' }
+      }
+    },
+    brand: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required brand field' },
+        notNull: { msg: 'Required brand field.' }
+      }
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required stock field' },
+        notNull: { msg: 'Required stock field.' },
+        min: {
+          args: [10],
+          msg: 'Minimum stock required is 10'
+        }
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required price field' },
+        notNull: { msg: 'Required price field.' },
+        min: {
+          args: [0],
+          msg: 'Minimum price required is 0'
+        }
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required description field' },
+        notNull: { msg: 'Required description field.' },
+      }
+    },
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required category field' },
+        notNull: { msg: 'Required category field.' },
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Required user field' },
+        notNull: { msg: 'Required user field.' },
+      }
+    }
   }, {
     sequelize,
     modelName: 'Product',

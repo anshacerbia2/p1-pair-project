@@ -1,5 +1,6 @@
 'use strict';
 const fs = require('fs');
+const hashPassword = require('../helpers/hashPassword');
 
 module.exports = {
   up(queryInterface, Sequelize) {
@@ -15,7 +16,8 @@ module.exports = {
     const data = JSON.parse(fs.readFileSync('./data/users.json', 'utf-8'));
     data.forEach(v => {
       delete v.id;
-      v.createdAt = v.updatedAt = new Date()
+      v.createdAt = v.updatedAt = new Date();
+      v.password = hashPassword(v.password);
     });
     return queryInterface.bulkInsert('Users', data, {});
   },
