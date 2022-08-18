@@ -22,12 +22,13 @@
   </style>
 </head>
 <body>
-  <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+  <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh; flex-direction: column;">
+    <h3 class=""mb-0>Login</h3>
     <form action="/login" method="post" class="form-floating" style="width: 300;">
       <div class="invalid"><%= invalid.credential ? invalid.credential : '' %></div>
       <div class="form-floating mb-2">
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<%= input.username ? input.username : '' %>">
-        <label for="username">Username</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<%= input.email ? input.email : '' %>">
+        <label for="email">Email</label>
       </div>
       <div class="form-floating mb-2">
         <input type="password" class="form-control" name="password" id="password" placeholder="Password" <%= input.password ? input.password : '' %>>

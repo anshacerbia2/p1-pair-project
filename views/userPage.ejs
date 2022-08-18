@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+</head>
+<body>
+    <h1>User Page</h1>
+     <table border='1'>
+    <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Account Age</th>
+    <th>Action</th>
+    </tr>
+    <% result.forEach((el) =>{ %>
+    <tr>
+    <td><%= el.username%></td>
+    <td><%= el.email%></td>
+    <td><%= el.accaountAge%></td>
+    <td><a href="/dashboard/admin/listUser/delete/<%= el.id %>">Delete</a></td>
+    </tr>
+    <% }) %>
+    </table>
+    <button><a href="/dashboard/admin">Back</a></button>
+    
+</body>
+</html>

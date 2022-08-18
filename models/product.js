@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.User);
       Product.belongsTo(models.Category);
     }
+
+    get formatRupiah() {
+      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(this.price);
+    }
   }
   Product.init({
     name: {
@@ -38,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'Required stock field' },
         notNull: { msg: 'Required stock field.' },
         min: {
-          args: [10],
+          args: [0],
           msg: 'Minimum stock required is 10'
         }
       }

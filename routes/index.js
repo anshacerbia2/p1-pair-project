@@ -9,12 +9,17 @@ router.get('/', Controller.home);
 router.use(authRouter);
 router.use(adminRouter);
 router.use(userRouter);
-// router.get('/logout', (request, response) => {
-//   request.session.destroy(err => {
-//     if (err) console.log(err);
-//     else response.redirect('/');
-//   });
-// });
+
+const isAuth = (request, response, next) => {
+  if (request.session.user) next();
+  else response.redirect('/');
+}
+router.get('/logout', isAuth, (request, response) => {
+  request.session.destroy(err => {
+    if (err) console.log(err);
+    else response.redirect('/');
+  });
+});
 
 
 // router.use(isAuth, dashboardRouter);

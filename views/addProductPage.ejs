@@ -15,7 +15,7 @@
 </head>
 <body>
     <h1>Add Product Page</h1>
-    <form action="/product/add" method="post">
+    <form action="/dashboard/admin/product/add" method="post">
         <label for="1">Nama</label>
         <input type="text" name="name" id="1" autocomplete="off" value="<%= input.name ? input.name : '' %>">
         <div class="invalid"><%= invalid.name ? invalid.name : '' %></div>
@@ -44,16 +44,14 @@
         </select>
         <div class="invalid"><%= invalid.Category ? invalid.Category : '' %></div>
         <br>
-        <label for="6">User Id</label>
-        <input type="number" name="UserId" id="6" value="<%= input.UserId ? input.UserId : '' %>">
-        <div class="invalid"><%= invalid.UserId ? invalid.UserId : '' %></div>
+        <input type="hidden" name="UserId" id="6" value="2">
         <br>
         <input type="submit" value="Add">
 
     </form>
 
     <br><br>
-    <button><a href="/product">Back</a></button>
+    <button><a href="/dashboard/admin">Back</a></button>
     
 </body>
 </html>

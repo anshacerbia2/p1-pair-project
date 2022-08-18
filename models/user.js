@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Product);
+      User.hasOne(models.UserProfile);
+    }
+
+    get accaountAge() {
+      return `${~~((new Date().getTime() - Date.parse(this.createdAt)) / 86400000)} Hari`
     }
   }
   User.init({

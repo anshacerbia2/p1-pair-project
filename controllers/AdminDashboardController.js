@@ -53,7 +53,7 @@ class Controller {
     const input = { name, brand, stock, price, description, CategoryId, UserId };
     console.log(input);
     Product.create(input)
-      .then(() => response.redirect('/product'))
+      .then(() => response.redirect('/dashboard/admin'))
       .catch(err => {
         if (!err.errors) response.send(err);
         else {
@@ -68,14 +68,15 @@ class Controller {
 
   static editProduct(req, res) {
     let { id } = req.params
-    let result = {}
+    console.log()
+    let product = {}
     Product.findByPk(id, { include: Category })
       .then((hasil) => {
-        result = hasil
+        product = hasil
         return Category.findAll()
       })
       .then((categories) => {
-        res.render('editProductPage', { input, categories, invalid })
+        res.render('editProductPage', { input: {}, categories, product, invalid: {} })
       })
       .catch((err) => {
         res.send(err)
@@ -99,7 +100,7 @@ class Controller {
       }
     })
       .then(() => {
-        res.redirect('/product')
+        res.redirect('/dashboard/admin')
       })
       .then((err) => {
         res.send(err)
@@ -114,8 +115,38 @@ class Controller {
       }
     })
       .then(() => {
-        res.redirect('/product')
+        res.redirect('/dashboard/admin/')
       })
+      .catch((err) => {
+        res.send(err)
+      })
+  }
+
+  static showUser(req, res) {
+    User.findAll({
+      where: {
+        role: "user"
+      }
+    })
+      .then((result) => {
+        res.render('userPage', { result })
+      })
+      .catch((err) => {
+        res.send(err)
+      })
+  }
+
+  static deleteUser(req, res) {
+    let id = req.params.id
+    User.destroy({
+      where: {
+        id: id
+      }
+    })
+      .then(() => {
+        res.redirect('/dashboard/admin/listUser')
+      })
+
       .catch((err) => {
         res.send(err)
       })
