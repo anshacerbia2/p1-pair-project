@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const UserController = require('../controllers/UserDashboardController');
 const UserDashboardController = require('../controllers/UserDashboardController');
 
 const isAuthUser = (request, response, next) => {
@@ -7,7 +6,8 @@ const isAuthUser = (request, response, next) => {
   else response.redirect('/login');
 }
 
-router.get('/dashboard/user', isAuthUser, UserDashboardController.showProduct)
+router.get('/dashboard/user', isAuthUser, UserDashboardController.userDashboardIndex);
+router.get('/dashboard/user/buyItem/:itemId', isAuthUser, UserDashboardController.userBuy);
 // router.post('/user/:id/buyProduct')
 
 module.exports = router;

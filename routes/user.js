@@ -6,9 +6,10 @@ const isAuth = (request, response, next) => {
   else next();
 }
 
-router.get('/login',isAuth, AuthController.loginIndex);
-router.post('/login',isAuth, AuthController.login);
-router.get('/register',isAuth, AuthController.registerIndex);
-router.post('/register',isAuth, AuthController.addUser);
+router.get('/login', isAuth, AuthController.loginIndex);
+router.post('/login', isAuth, AuthController.login);
+router.get('/register', isAuth, AuthController.registerIndex);
+router.post('/register', isAuth, AuthController.addUser);
+
 
 module.exports = router;

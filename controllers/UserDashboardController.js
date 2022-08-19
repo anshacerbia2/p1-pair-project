@@ -1,62 +1,62 @@
-const { User, Category, Product } = require('../models');
+const { User, Category, Product, UserProfile } = require('../models');
 
-class UserController {
-  
-  static showProduct(req, res) {
-    let { sort, CategoryId, search } = req.query
-    let option = {}
-    let result = {}
-    if (sort) {
-      option = {
-        order: [[`${sort}`, "ASC"]]
-      }
-    }
-    if (CategoryId) {
-      option = {
-        where: {
-          CategoryId: CategoryId
-        }
-      }
-    }
-    if (search) {
-      option = {
-        where: {
-          name: { [Op.iLike]: `%${search}%` }
-        }
-      }
-    }
-    Product.findAll(option)
-      .then((hasil) => {
-        result = hasil
-        return Category.findAll()
+class UserDashboardController {
+  static userDashboardIndex(request, response) {
+    let products;
+    let categories;
+    Product.findAll({ include: [Category] })
+      .then(resProducts => {
+        products = resProducts;
+        return Category.findAll();
       })
-      .then((result2) => {
-        res.render('productShow', { result, result2 })
+      .then(resCategories => {
+        categories = resCategories;
+        return User.findByPk(+request.session.user.id, { include: UserProfile });
       })
-      .catch((err) => {
-        res.send(err)
+      .then(user => {
+        response.render('userDashboard', { user, products, categories });
       })
-  }
-
-  static addProduct(req, res) {
-    Category.findAll()
-      .then((categories) => {
-        res.render("addProductPage", { categories, input: {}, invalid: {}, data: {} });
-      })
-      .catch((err) => {
-        res.send(err);
-      })
-  }
-  static listUsers(request, response) {
-    User.findAll({
-      include: [{
-        model: Product,
-        include: [Category]
-      }]
-    })
-      .then(users => response.send(users))
       .catch(err => response.send(err));
+  }
+
+  static userBuy(request, response) {
+    const id = +request.params.itemId;
+    let price;
+    Product.findByPk(id)
+      .then(product => {
+        price = product.price;
+        console.log(price);
+        return Product.update({ stock: 1 }, { where: { id: id } });
+      })
+      .then(() => {
+        return UserProfile.findOne({ where: { UserId: +request.session.user.id } })
+      })
+      .then((user) => {
+        return UserProfile.update({ balance: user.balance - price }, { where: { UserId: +request.session.user.id } })
+      })
+      .then(() => response.redirect('/dashboard/user'))
+      .catch(err => {
+        if (!err.errors) response.send(err)
+        else {
+          response.send(err)
+          // let invalid = {}
+          // let products;
+          // let categories;
+          // Product.findAll({ include: [Category] })
+          //   .then(resProducts => {
+          //     products = resProducts;
+          //     return Category.findAll();
+          //   })
+          //   .then(resCategories => {
+          //     categories = resCategories;
+          //     return User.findByPk(+request.session.user.id, { include: UserProfile });
+          //   })
+          //   .then(user => {
+          //     response.render('userDashboard', { user, products, categories, invalid });
+          //   })
+        }
+      });
   }
 }
 
-module.exports = UserController;
+module.exports = UserDashboardController;

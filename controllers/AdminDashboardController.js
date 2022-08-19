@@ -122,6 +122,36 @@ class Controller {
       })
   }
 
+  static showUser(req, res) {
+    User.findAll({
+      where: {
+        role: "user"
+      }
+    })
+      .then((result) => {
+        res.render('userPage', { result })
+      })
+      .catch((err) => {
+        res.send(err)
+      })
+  }
+
+  static deleteUser(req, res) {
+    let id = req.params.id
+    User.destroy({
+      where: {
+        id: id
+      }
+    })
+      .then(() => {
+        res.redirect('/dashboard/admin/listUser')
+      })
+
+      .catch((err) => {
+        res.send(err)
+      })
+  }
+
   static showUser(req, res){
     User.findAll({
       where : {

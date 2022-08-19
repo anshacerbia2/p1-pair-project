@@ -29,13 +29,13 @@ class AuthController {
   }
 
   static login(request, response) {
-    const { username, password } = request.body;
-    const input = { username };
-    User.findOne({ where: { username: { [Op.eq]: username } } })
+    const { email, password } = request.body;
+    const input = { email };
+    User.findOne({ where: { email: { [Op.eq]: email } } })
       .then(user => {
         let invalid = {};
         if (user === null || !compareHashedPassword(password, user.password)) {
-          invalid.credential = 'Invalid username or password';
+          invalid.credential = 'Invalid email or password';
           response.render('login', { input, invalid });
         }
         if (compareHashedPassword(password, user.password)) {
@@ -48,7 +48,7 @@ class AuthController {
 
         }
       })
-        .catch(err => response.send(err));
+      .catch(err => response.send(err));
   }
 }
 
