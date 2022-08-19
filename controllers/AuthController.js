@@ -1,7 +1,9 @@
 const { Op } = require('sequelize');
 const compareHashedPassword = require('../helpers/compareHashedPassword');
 const { User, Category, Product } = require('../models');
-
+// Nodemailer
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 class AuthController {
   static registerIndex(request, response) {
@@ -12,13 +14,36 @@ class AuthController {
     const { username, email, password, confirm } = request.body;
     const input = { username, email, password, confirm };
     User.create(input)
-      .then(() => response.redirect('login'))
+      .then(() => {
+        // Nodemailer
+        const transporter = nodemailer.createTransport(smtpTransport({
+          service: 'gmail',
+          host: 'smtp.gmail.com',
+          auth: {
+            user: 'webmail.auto.sender@gmail.com',
+            pass: 'mhrztczzwoimzmxs'
+          }
+        }));
+
+        const mailOptions = {
+          from: 'webmail.auto.sender@gmail.com@gmail.com',
+          to: `${email}`,
+          subject: `Thank you for register ${username}`,
+          text: 'That was easy!'
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) console.log(error);
+          else console.log('Email sent: ' + info.response);
+        });
+
+        response.redirect('/login')
+      })
       .catch(err => {
         if (!err.errors) response.send(err);
         else {
           let invalid = {};
           err.errors.forEach(v => invalid[v.path] = v.message);
-          console.log(input);
           response.render('register', { input, invalid });
         }
       });
