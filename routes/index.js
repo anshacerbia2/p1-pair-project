@@ -10,6 +10,7 @@ router.use(authRouter);
 router.use(adminRouter);
 router.use(userRouter);
 
+
 const isAuth = (request, response, next) => {
   if (request.session.user) next();
   else response.redirect('/');

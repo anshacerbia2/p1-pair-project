@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     get accaountAge() {
       return `${~~((new Date().getTime() - Date.parse(this.createdAt)) / 86400000)} Hari`
     }
+
+    get accaountAge(){
+      return `${~~((new Date().getTime() - Date.parse(this.createdAt)) / 86400000)} Hari`
+    }
   }
   User.init({
     username: {

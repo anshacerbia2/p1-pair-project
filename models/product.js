@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
     get formatRupiah() {
       return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(this.price);
+
     }
   }
   Product.init({
